@@ -10,9 +10,6 @@ module.exports = async (client, message) => {
   // give the guild object inside the command cuz that's kinda usefull
   message.guild = client.guilds.get(message.guildID);
 
-  let suggest = await checkSuggestion(message);
-  if (suggest) return;
-
   const mainPrefix = config.prefix;
   const prefixes = [mainPrefix, `<@!${client.user.id}>`, `<@${client.user.id}>`];
 
