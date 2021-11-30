@@ -7,12 +7,14 @@ module.exports.run = async (client, message, args) => {
   let helpContent = "";
 
   for (let [name, cmd] of client.commands) {
-    helpContent = helpContent + name + "\n";
+    helpContent = helpContent + "`" + config.prefix + name + "`" + "\n";
   }
 
-  embed.setDescription(helpContent);
+  embed.setAuthor("Live crypto status discord bot");
+  embed.addField("Commands", helpContent);
+  embed.addField("Misc :", `CryptoLive status currently set on \`${config.liveCrypto.name}\`\n\n *made with <3 by chaun14#1403*`);
   embed.setColor("#9534eb");
-  embed.setFooter(message.guild.name, client.user.dynamicAvatarURL("webp"));
+  embed.setFooter(message.member.username + "#" + message.member.discriminator, message.author.dynamicAvatarURL("webp"));
 
   embed.setTimestamp();
 
