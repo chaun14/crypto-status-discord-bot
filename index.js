@@ -4,6 +4,7 @@ const fs = require("fs");
 const recursive = require("recursive-readdir");
 
 const config = require("./config.js");
+const { initLiveCrypto } = require("./modules/cryptoManager.js");
 require("./utils/awaitMessages");
 
 const init = async () => {
@@ -71,6 +72,8 @@ const init = async () => {
     });
     console.log(`\nLoaded ` + `${fileNumber}`.yellow + ` files.`);
   });
+
+  client.once("ready", () => initLiveCrypto(client));
 
   client.connect();
 };
