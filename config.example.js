@@ -11,5 +11,7 @@ module.exports = {
     lowThreshold: -1, // when the percentage will reach that amount or less, the bot will be in dnd (red)
     // if beween these two values, will be set as dnd (orange)
     refreshInterval: 1, // how much time between status change (in minutes)
+    currency: "usd", // get the list from the main page https://www.coingecko.com/
+    currencySymbol: "$", // put the money symbol associated to the currency right up
   },
 };

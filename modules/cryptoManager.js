@@ -34,8 +34,8 @@ async function setClientStatus(client) {
 async function fetchCryptoData() {
   const result = await CoinGeckoClient.coins.fetch(config.liveCrypto.name);
   const price_change_percentage_24h = result.data.market_data.price_change_percentage_24h;
-  const current_price = result.data.market_data.current_price.usd;
+  const current_price = result.data.market_data.current_price[config.liveCrypto.currency];
   const name = result.data.name;
 
-  return { string: `$${current_price.toFixed(2)} @ ${price_change_percentage_24h.toFixed(2)}% | ${name}`, percentage: price_change_percentage_24h.toFixed(2) };
+  return { string: `${config.liveCrypto.currencySymbol}${current_price.toFixed(2)} @ ${price_change_percentage_24h.toFixed(2)}% | ${name}`, percentage: price_change_percentage_24h.toFixed(2) };
 }
