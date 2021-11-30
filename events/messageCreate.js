@@ -33,11 +33,6 @@ module.exports = async (client, message) => {
     if (message.member.roles.includes(roleid)) message.author.isManager = true;
   }
 
-  message.author.isScholar = false;
-  for (let roleid of config.permissions.scholar) {
-    if (message.member.roles.includes(roleid)) message.author.isScholar = true;
-  }
-
   console.log("[" + "COMMAND".magenta + "] " + cmd.config.name.cyan + " in " + message.guildID.green + " by " + message.author.username.yellow);
 
   return cmd.run(client, message, args).catch((warning) => console.log(warning));
