@@ -2,6 +2,8 @@
 
 This is basically a script to show current crypto value and daily growth in a discord bot status
 
+![](https://i.imgur.com/ADcUHYt.png)
+
 ## Features
 
 - status color change depending to the growth rate
