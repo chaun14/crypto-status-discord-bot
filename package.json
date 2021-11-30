@@ -1,0 +1,17 @@
+{
+  "name": "unixTokenLiveBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chaun14",
+  "license": "ISC",
+  "dependencies": {
+    "coingecko-api": "^1.0.10",
+    "colors": "^1.4.0",
+    "eris": "^0.15.1",
+    "recursive-readdir": "^2.2.2"
+  }
+}
