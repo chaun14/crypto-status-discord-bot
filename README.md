@@ -7,6 +7,8 @@ This is basically a script to show current crypto value and daily growth in a di
 ## Features
 
 - status color change depending to the growth rate
+- select whatever crypto coin (must be on coingecko) 
+- show coin price in your local currency (get list on coingecko)
 - lightweight (using eris ofc)
 - customisable
 - flexible
