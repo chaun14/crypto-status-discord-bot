@@ -8,7 +8,9 @@ const { initLiveCrypto } = require("./modules/cryptoManager.js");
 require("./utils/awaitMessages");
 
 const init = async () => {
-  const client = new Eris(config.token);
+  const client = new Eris(config.token, {
+    intents: ["allPrivileged"],
+  });
 
   console.log("\n\nLoading...\n\n".brightRed);
 

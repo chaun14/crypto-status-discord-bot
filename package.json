@@ -12,7 +12,7 @@
   "dependencies": {
     "coingecko-api": "^1.0.10",
     "colors": "^1.4.0",
-    "eris": "^0.15.1",
+    "eris": "^0.16.1",
     "recursive-readdir": "^2.2.2"
   }
 }
