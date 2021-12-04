@@ -10,11 +10,13 @@ require("./utils/awaitMessages");
 const init = async () => {
   const client = new Eris(config.token, {
     intents: ["allPrivileged"],
+    allowedMentions: [],
   });
 
   console.log("\n\nLoading...\n\n".brightRed);
 
   client.commands = new Map();
+  client.slashCommands = new Map();
   client.aliases = new Map();
   let fileNumber = 0;
 
@@ -70,6 +72,30 @@ const init = async () => {
 
       console.log(`Loaded command : ` + `${commandName}`.brightRed);
       console.log(`Aliases : ` + `${aliases}`.cyan);
+      fileNumber = fileNumber + 1;
+    });
+    console.log(`\nLoaded ` + `${fileNumber}`.yellow + ` files.`);
+  });
+
+  // load slash
+  recursive("./slashCommands/", (err, files) => {
+    if (err) return console.error(err);
+
+    console.log(`\n\nSlashCommands : (` + `${files.length}`.bold.yellow + ")");
+
+    files.forEach((file) => {
+      if (!file.endsWith(".js")) return;
+
+      let props = require(`./${file}`);
+
+      let filePath = file.replace(/\\/g, "/"); // weird thing to avoid path issues
+      let commandName = filePath.split(/\//g).reverse()[0];
+      commandName = commandName.split(".")[0];
+
+      // register command
+      client.slashCommands.set(props.data.name.toLowerCase(), props);
+
+      console.log(`Loaded slash command : ` + `${props.data.name}`.brightRed);
       fileNumber = fileNumber + 1;
     });
     console.log(`\nLoaded ` + `${fileNumber}`.yellow + ` files.`);
