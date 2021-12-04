@@ -16,6 +16,9 @@
     "colors": "^1.4.0",
     "dayjs": "^1.10.7",
     "eris": "^0.16.1",
-    "recursive-readdir": "^2.2.2"
+    "fast-average-color-node": "^2.1.0",
+    "node-fetch": "^2.6.6",
+    "recursive-readdir": "^2.2.2",
+    "save": "^2.4.0"
   }
 }

@@ -1,13 +1,14 @@
 const Eris = require("eris");
+const dayjs = require("dayjs");
+const fs = require("fs");
+const fetch = require("node-fetch");
 
 const Constants = Eris.Constants;
 
 const config = require("../config");
 const { getCoinCache, getCoinCharts } = require("../modules/cryptoManager");
 const MessageEmbed = require("../utils/MessageEmbed");
-const dayjs = require("dayjs");
 const { genGraph } = require("../modules/chart");
-const fs = require("fs");
 
 module.exports = {
   data: { name: config.liveCrypto.name, description: "Show the latest " + config.liveCrypto.name + " data and charts", options: [] },
@@ -77,8 +78,23 @@ module.exports = {
     let total_volume = config.liveCrypto.currencySymbol + coinData.market_data.total_volume[config.liveCrypto.currency];
     let market_cap = config.liveCrypto.currencySymbol + coinData.market_data.market_cap[config.liveCrypto.currency];
 
+    let embedColor = "#FF00FF";
+    try {
+      // I've put the require in the tcatch to avoid depedencies crash due to the evil sharp package
+      const { getAverageColor } = require("fast-average-color-node");
+
+      const response = await fetch(image);
+      const buffer = await response.buffer();
+      let averageColor = await getAverageColor(buffer);
+      if (averageColor) {
+        embedColor = averageColor.hex;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     const embed = new MessageEmbed();
-    embed.setColor("#FF00FF");
+    embed.setColor(embedColor);
     embed.setTimestamp();
     embed.setDescription(`Market cap rank: \`#${marketRank}\`\nMarket cap: \`${market_cap}\`\n24H Volume: \`${total_volume}\`\n24H High/Low: \`${high_24h}\`/\`${low_24h}\``);
     embed.addField("Current Prices:", `${config.liveCrypto.currencySymbol}: \`${current_price}\``, true);
