@@ -13,7 +13,13 @@ module.exports = async (client, interaction) => {
       let message = await interaction.createMessage({ embed: embed.code });
       interaction.message = interaction;
 
-      client.slashCommands.get(interaction.data.name).execute(client, interaction, message);
+      slashObject = client.slashCommands.get(interaction.data.name);
+
+      try {
+        slashObject.execute(client, interaction, message);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };
