@@ -12,7 +12,7 @@ const { genGraph } = require("../modules/chart");
 const { getAverageColor } = require("../modules/averageImageColor");
 
 module.exports = {
-  data: { name: config.liveCrypto.name, description: "Show the latest " + config.liveCrypto.name + " data and charts", options: [] },
+  data: { name: config.liveCrypto.name, description: "Show the latest " + config.liveCrypto.name + " data and charts (1.0.0)", options: [] },
   async execute(client, data) {
     let coinName = config.liveCrypto.name;
     if (data.data.options && data.data.options[0]) {

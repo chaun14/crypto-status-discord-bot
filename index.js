@@ -5,6 +5,7 @@ const recursive = require("recursive-readdir");
 
 const config = require("./config.js");
 const { initLiveCrypto } = require("./modules/cryptoManager.js");
+const { deploySlashCommands } = require("./modules/slashManager.js");
 require("./utils/awaitMessages");
 
 const init = async () => {
@@ -78,7 +79,7 @@ const init = async () => {
   });
 
   // load slash
-  recursive("./slashCommands/", (err, files) => {
+  recursive("./slashCommands/", async (err, files) => {
     if (err) return console.error(err);
 
     console.log(`\n\nSlashCommands : (` + `${files.length}`.bold.yellow + ")");
@@ -98,10 +99,14 @@ const init = async () => {
       console.log(`Loaded slash command : ` + `${props.data.name}`.brightRed);
       fileNumber = fileNumber + 1;
     });
+
     console.log(`\nLoaded ` + `${fileNumber}`.yellow + ` files.`);
   });
 
-  client.once("ready", () => initLiveCrypto(client));
+  client.once("ready", () => {
+    initLiveCrypto(client);
+    deploySlashCommands(client);
+  });
 
   client.connect();
 };
