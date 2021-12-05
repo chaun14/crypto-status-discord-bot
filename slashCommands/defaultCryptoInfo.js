@@ -102,7 +102,18 @@ module.exports = {
     embed.attachFile(graph, coinName + "cryptoChart-" + data.guildID + ".png");
     embed.setFooter(client.user.username, client.user.dynamicAvatarURL("webp"));
 
-    let msg = await data.editOriginalMessage({ embed: embed.code, file: { file: graph, name: coinName + "cryptoChart-" + data.guildID + ".png" } });
-    // console.log(msg);
+    try {
+      await data.editOriginalMessage({ embed: embed.code, file: { file: graph, name: coinName + "cryptoChart-" + data.guildID + ".png" } });
+    } catch (error) {
+      console.error(error);
+
+      const embed = new MessageEmbed();
+      embed.setColor("#FF0000");
+      embed.setDescription("❌ Error\n\nUnable to upload image attachment");
+      embed.setTimestamp();
+      embed.setFooter(client.user.username, client.user.dynamicAvatarURL("webp"));
+
+      return data.editOriginalMessage({ embed: embed.code });
+    }
   },
 };
