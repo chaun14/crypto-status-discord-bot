@@ -9,6 +9,7 @@ module.exports = async (client, interaction) => {
       const embed = new MessageEmbed();
       embed.setTimestamp();
       embed.setDescription("⏳ Bot is thinking... ");
+      embed.setFooter(client.user.username, client.user.dynamicAvatarURL("webp"));
 
       let message = await interaction.createMessage({ embed: embed.code });
       interaction.message = interaction;
