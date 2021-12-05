@@ -9,6 +9,7 @@ const config = require("../config");
 const { getCoinCache, getCoinCharts } = require("../modules/cryptoManager");
 const MessageEmbed = require("../utils/MessageEmbed");
 const { genGraph } = require("../modules/chart");
+const { getAverageColor } = require("../modules/averageImageColor");
 
 module.exports = {
   data: { name: config.liveCrypto.name, description: "Show the latest " + config.liveCrypto.name + " data and charts", options: [] },
@@ -80,18 +81,14 @@ module.exports = {
 
     let embedColor = "#FF00FF";
     try {
-      // I've put the require in the tcatch to avoid depedencies crash due to the evil sharp package
-      const { getAverageColor } = require("fast-average-color-node");
-
       const response = await fetch(image);
       const buffer = await response.buffer();
       let averageColor = await getAverageColor(buffer);
-      if (averageColor) {
-        embedColor = averageColor.hex;
-      }
+      if (averageColor) embedColor = averageColor;
     } catch (error) {
       console.error(error);
     }
+    // console.log(embedColor);
 
     const embed = new MessageEmbed();
     embed.setColor(embedColor);
