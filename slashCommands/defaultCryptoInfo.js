@@ -48,7 +48,7 @@ module.exports = {
     //console.log(labels);
     //console.log(values);
 
-    let graph = await genGraph(labels, values);
+    let graph = await genGraph(labels, { data: values, label: coinName + " price in " + config.liveCrypto.currency });
     //console.log(graph);
 
     if (!coinData) {

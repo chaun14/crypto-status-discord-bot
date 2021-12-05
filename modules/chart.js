@@ -19,9 +19,10 @@ module.exports.genGraph = async (labels, y) => {
 
       datasets: [
         {
+          label: y.label,
           borderColor: "rgb(0, 255, 132)",
           backgroundColor: "rgba(0, 255, 132, 0.25)",
-          data: y,
+          data: y.data,
         },
       ],
     };
