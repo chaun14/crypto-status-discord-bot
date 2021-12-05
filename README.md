@@ -6,9 +6,10 @@ This is basically a script to show current crypto value and daily growth in a di
 
 ## Features
 
-- status color change depending to the growth rate
+- status [color](https://i.imgur.com/MLBxsP0.png) change depending to the growth rate
 - select whatever crypto coin (must be on coingecko) 
 - show coin price in your local currency (get list on coingecko)
+- Slash commands to show [charts](https://i.imgur.com/F1QTSiy.png) 
 - lightweight (using eris ofc)
 - customisable
 - flexible
@@ -21,6 +22,8 @@ This is basically a script to show current crypto value and daily growth in a di
 - rename `config.example.js` to `config.js` and fill it correctly
 - run `npm i` to install dependencies
 - run `node index.js` to start it
+- Invite your bot through a link like this one`https://discord.com/api/oauth2/authorize?permissions=313344&scope=applications.commands%20bot&client_id=YOURBOTIDHERE` Don't forget to replace `YOURBOTIDHERE` by your bot id.
+- You have to wait an hour for slash commands to deploy on your servers
 
 ## Warning
 
